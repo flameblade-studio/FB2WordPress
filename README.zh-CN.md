@@ -90,7 +90,7 @@ dotnet run --project tests/AuditHarness/WordPressAuditHarness.csproj -c Release
 
 FB2WordPress 依 MIT 许可证完整开放，迁移、图片优化与文章整理功能不会因是否赞助而有差别。如果它帮助你将内容真正带回自己的网站，欢迎自愿支持炎剑文化工作室继续维护与改进：
 
-- [Ko-fi 一次性赞助](https://ko-fi.com/flamebladestudio)
+请使用本仓库上方由 GitHub 显示的 **Sponsor** 按钮；目前正式收款选项为 Ko-fi，可选择单次或每月赞助。
 
 赞助不是使用条件；分享实际经验、报告兼容性问题或参与 PR，也能帮助更多创作者。
 

@@ -90,7 +90,7 @@ dotnet run --project tests/AuditHarness/WordPressAuditHarness.csproj -c Release
 
 FB2WordPress は MIT ライセンスのもとですべての機能を公開しています。移行、画像最適化、記事整理の機能は、支援の有無にかかわらず同一です。コンテンツを自分のドメインへ取り戻す助けになった場合は、炎剣文化工作室の継続的な保守を任意でご支援いただけます。
 
-- [Ko-fi で一回限りの支援](https://ko-fi.com/flamebladestudio)
+このリポジトリ上部に GitHub が表示する **Sponsor** ボタンをご利用ください。現在の正式な支援先は Ko-fi で、単発または毎月の支援を選べます。
 
 ご支援は利用条件ではありません。実環境での報告、互換性に関する情報、プルリクエストも多くのクリエイターを助けます。
 

@@ -94,7 +94,7 @@ dotnet publish src/FB2WordPress/FB2WordPress.csproj -c Release -r win-x64 --self
 
 FB2WordPress 依 MIT 授權完整開放，搬家、圖片最佳化與文章整理功能不會因是否贊助而有差別。如果它協助你把內容真正帶回自己的網站，歡迎自由支持炎劍文化工作室持續維護與改善：
 
-- [Ko-fi 一次性贊助](https://ko-fi.com/flamebladestudio)
+請使用本儲存庫上方由 GitHub 顯示的 **Sponsor** 按鈕；目前正式收款選項為 Ko-fi，可選擇單次或每月贊助。
 
 贊助不是使用條件；分享實際使用經驗、回報相容性問題或參與 PR，也能幫助更多創作者。
 
