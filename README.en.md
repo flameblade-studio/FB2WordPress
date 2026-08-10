@@ -90,8 +90,7 @@ Licensed under the [MIT License](LICENSE). This independent project is not affil
 
 FB2WordPress is fully available under the MIT License. Migration, image optimization, and article-cleanup features are identical for everyone, whether or not they donate. If the tool helped bring your work back under your own domain, you may voluntarily support Flameblade Studio's ongoing maintenance:
 
-- [Buy Me a Coffee](https://buymeacoffee.com/flameblade_studio)
-- [PayPal.Me](https://www.paypal.com/paypalme/flamebladestudio)
+- [One-time support on Ko-fi](https://ko-fi.com/flamebladestudio)
 
 Donations are never a condition of use. Field reports, compatibility feedback, and pull requests also help the wider creator community.
 
