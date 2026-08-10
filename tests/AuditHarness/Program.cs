@@ -95,9 +95,13 @@ foreach (var readmeName in new[] { "README.md", "README.zh-CN.md", "README.en.md
     Check(readme.Contains("img.shields.io/badge/interface%20languages-4-informational", StringComparison.Ordinal) && readme.Contains("Four interface languages", StringComparison.Ordinal), $"{readmeName} identifies four-language documentation");
     Check(readme.Contains("CONTRIBUTING.md", StringComparison.Ordinal), $"{readmeName} links the software-family quality standard");
     Check(readme.Contains(readmeDeclarations[readmeName], StringComparison.Ordinal), $"{readmeName} carries the localized open-source declaration");
-    Check(readme.Contains("https://buymeacoffee.com/flameblade_studio", StringComparison.Ordinal) && readme.Contains("https://www.paypal.com/paypalme/flamebladestudio", StringComparison.OrdinalIgnoreCase), $"{readmeName} includes both voluntary support links");
+    Check(readme.Contains("https://ko-fi.com/flamebladestudio", StringComparison.Ordinal), $"{readmeName} links the verified Ko-fi support page");
+    Check(!readme.Contains("buymeacoffee.com", StringComparison.OrdinalIgnoreCase) && !readme.Contains("paypal.com/paypalme", StringComparison.OrdinalIgnoreCase), $"{readmeName} excludes retired support links");
     Check(!readme.Contains("\n+<p align=\"center\">", StringComparison.Ordinal), $"{readmeName} has no stray patch marker");
 }
+
+var funding = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), ".github", "FUNDING.yml")).Replace("\r\n", "\n", StringComparison.Ordinal);
+Check(funding == "ko_fi: flamebladestudio\n", "GitHub Sponsor button uses only the verified Ko-fi account");
 
 var workflowNames = new[] { "ci.yml", "codeql.yml", "security-audit.yml", "secret-defense.yml", "dependency-review.yml", "preview-packages.yml" };
 foreach (var workflowName in workflowNames)
