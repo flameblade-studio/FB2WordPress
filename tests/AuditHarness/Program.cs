@@ -80,6 +80,13 @@ var readmeDeclarations = new Dictionary<string, string>(StringComparer.Ordinal)
     ["README.en.md"] = "I have forged this sword. What comes next is up to you.",
     ["README.ja.md"] = "この剣は、私が鍛え上げました。あとは皆さんに託します。"
 };
+var supportLabels = new Dictionary<string, string>(StringComparer.Ordinal)
+{
+    ["README.md"] = "Ko-fi 贊助（單次或每月）",
+    ["README.zh-CN.md"] = "Ko-fi 赞助（单次或每月）",
+    ["README.en.md"] = "Support on Ko-fi (one-time or monthly)",
+    ["README.ja.md"] = "Ko-fi で支援（1 回または毎月）"
+};
 
 foreach (var readmeName in new[] { "README.md", "README.zh-CN.md", "README.en.md", "README.ja.md" })
 {
@@ -96,6 +103,7 @@ foreach (var readmeName in new[] { "README.md", "README.zh-CN.md", "README.en.md
     Check(readme.Contains("CONTRIBUTING.md", StringComparison.Ordinal), $"{readmeName} links the software-family quality standard");
     Check(readme.Contains(readmeDeclarations[readmeName], StringComparison.Ordinal), $"{readmeName} carries the localized open-source declaration");
     Check(readme.Contains("https://ko-fi.com/flamebladestudio", StringComparison.Ordinal), $"{readmeName} links the verified Ko-fi support page");
+    Check(readme.Contains(supportLabels[readmeName], StringComparison.Ordinal), $"{readmeName} uses localized one-time and monthly Ko-fi wording");
     Check(!readme.Contains("buymeacoffee.com", StringComparison.OrdinalIgnoreCase) && !readme.Contains("paypal.com/paypalme", StringComparison.OrdinalIgnoreCase), $"{readmeName} excludes retired support links");
     Check(!readme.Contains("\n+<p align=\"center\">", StringComparison.Ordinal), $"{readmeName} has no stray patch marker");
 }
