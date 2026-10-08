@@ -4,6 +4,7 @@
 
 ### 繁體中文
 
+- 修正 Windows 完整版按下「設定」或首次啟動時，設定視窗在開啟前就當機並跳出系統錯誤的問題；四種介面語言都會正確預選目前語言，並新增自動稽核防止再發生。
 - 新增 Windows x64 完整 EXE、macOS x64 與 Apple Silicon arm64 兩種未簽章 Preview DMG，以及 Linux x86_64 Preview AppImage；四份最終成品均在相符的原生 GitHub runner 執行啟動存活測試。
 - 只有精確 `v1.1.0-rc.N`（`N > 0`）、版本相符且標籤提交屬於 `origin/main` 時，才會彙整 SHA256、各平台 SPDX SBOM 與證明並建立四語 prerelease；任一失敗或一般 `main` 推送都不發布。macOS／Linux 仍明確標示為移植入口，尚非完整搬家版或作者實機驗證。
 - 建立 `net10.0` 共用核心與 Avalonia 12 最小桌面入口，並新增 Windows、macOS、Linux CI 矩陣。
@@ -18,6 +19,7 @@
 
 ### 简体中文
 
+- 修复 Windows 完整版点击“设置”或首次启动时，设置窗口在打开前就崩溃并弹出系统错误的问题；四种界面语言都会正确预选当前语言，并新增自动审计防止再次发生。
 - 新增 Windows x64 完整 EXE、macOS x64 与 Apple Silicon arm64 两种未签名 Preview DMG，以及 Linux x86_64 Preview AppImage；四份最终成品都在架构匹配的原生 GitHub runner 中执行启动存活测试。
 - 只有标签严格匹配 `v1.1.0-rc.N`（`N > 0`）、版本一致且标签提交属于 `origin/main` 时，才会汇总 SHA256、各平台 SPDX SBOM 与证明并创建四语 prerelease；任一失败或普通 `main` 推送都不会发布。macOS／Linux 仍明确标记为移植入口，不是完整迁移版或作者实机验证。
 - 建立 `net10.0` 共享核心与 Avalonia 12 最小桌面入口，并新增 Windows、macOS、Linux CI 矩阵。
@@ -32,6 +34,7 @@
 
 ### English
 
+- Fixed the complete Windows edition crashing with a system error before the settings window opened, whether from the Settings button or on first launch; all four interface languages now preselect correctly, and an automated audit guards against regressions.
 - Added the complete Windows x64 EXE, separate unsigned macOS x64 and Apple Silicon arm64 Preview DMGs, and a Linux x86_64 Preview AppImage. All four final packages are launch-smoke-tested on matching native GitHub runners.
 - Only an exact `v1.1.0-rc.N` tag (`N > 0`) with a matching source version and a commit contained in `origin/main` can aggregate SHA256, per-platform SPDX SBOMs, and attestations into a four-language prerelease. Any failure or ordinary `main` push never publishes. macOS/Linux remain explicitly incomplete migration entry points without author-owned real-device validation.
 - Added a shared `net10.0` core, a minimal Avalonia 12 desktop entry point, and a Windows/macOS/Linux CI matrix.
@@ -46,6 +49,7 @@
 
 ### 日本語
 
+- Windows 完全版で「設定」を押したときや初回起動時に、設定画面が開く前にクラッシュしてシステムエラーが表示される問題を修正しました。4つの表示言語すべてで現在の言語が正しく選択され、再発を防ぐ自動監査も追加しました。
 - Windows x64 完全版 EXE、macOS x64 と Apple Silicon arm64 の個別の未署名 Preview DMG、Linux x86_64 Preview AppImage を追加し、4つの最終成果物を対応するネイティブ GitHub runner 上で起動・存続テストします。
 - `v1.1.0-rc.N`（`N > 0`）に厳密一致し、ソースのバージョンとも一致し、タグの commit が `origin/main` に含まれる場合に限り、SHA256、各プラットフォームの SPDX SBOM、証明を4言語 prerelease にまとめます。いずれかの失敗時や通常の `main` push では公開しません。macOS／Linux は未完成の移植入口であり、作者による実機検証済み完全版ではありません。
 - `net10.0` 共有コア、Avalonia 12 の最小デスクトップ入口、Windows／macOS／Linux の CI マトリクスを追加しました。
