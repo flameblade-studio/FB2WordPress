@@ -124,7 +124,7 @@ foreach (var workflowName in workflowNames)
 }
 
 var ciWorkflow = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), ".github", "workflows", "ci.yml"));
-Check(ciWorkflow.Contains("tags: ['v*']", StringComparison.Ordinal), "A normal v1.1.0-rc.1 tag push triggers cross-platform CI");
+Check(ciWorkflow.Contains("tags: ['v*']", StringComparison.Ordinal), "A normal v1.1.0-rc.N tag push triggers cross-platform CI");
 Check(ciWorkflow.Contains("-p:Version=${{ steps.package_version.outputs.value }}", StringComparison.Ordinal), "A release tag overrides fallback assembly metadata during publish");
 Check(ciWorkflow.Contains("windows-latest", StringComparison.Ordinal) && ciWorkflow.Contains("macos-latest", StringComparison.Ordinal) && ciWorkflow.Contains("ubuntu-latest", StringComparison.Ordinal), "Cross-platform CI covers Windows, macOS, and Linux runners");
 
@@ -226,8 +226,8 @@ Check(contributing.Contains("Gitleaks", StringComparison.Ordinal) && contributin
 
 var sharedBuildMetadata = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Directory.Build.props"));
 Check(sharedBuildMetadata.Contains("<Version>1.1.0</Version>", StringComparison.Ordinal), "All project outputs share the v1.1.0 fallback metadata from one source");
-Check(sharedBuildMetadata.Contains("<PreviewVersion>1.1.0-rc.1</PreviewVersion>", StringComparison.Ordinal), "All Preview packages resolve v1.1.0-rc.1 from one source");
-var versionAndSupportSurfaces = new[] { "README.md", "README.zh-CN.md", "README.en.md", "README.ja.md", "CHANGELOG.md", Path.Combine("docs", "CROSS_PLATFORM.md"), "RELEASE_NOTES_v1.1.0-rc.1.md" }
+Check(sharedBuildMetadata.Contains("<PreviewVersion>1.1.0-rc.2</PreviewVersion>", StringComparison.Ordinal), "All Preview packages resolve v1.1.0-rc.2 from one source");
+var versionAndSupportSurfaces = new[] { "README.md", "README.zh-CN.md", "README.en.md", "README.ja.md", "CHANGELOG.md", Path.Combine("docs", "CROSS_PLATFORM.md"), "RELEASE_NOTES_v1.1.0-rc.2.md" }
     .Select(path => File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), path)))
     .ToArray();
 Check(versionAndSupportSurfaces.All(text => !text.Contains("2.2.0", StringComparison.OrdinalIgnoreCase)), "FB2WordPress documentation contains no MoHan v2.2.0 version leak");
@@ -240,10 +240,10 @@ Check(new[] { "README.md", "README.zh-CN.md", "README.en.md", "README.ja.md" }.A
           return text.Contains("Preview", StringComparison.Ordinal) && text.Contains("DMG", StringComparison.Ordinal) &&
                  text.Contains("AppImage", StringComparison.Ordinal) && text.Contains("SHA256", StringComparison.Ordinal) &&
                  text.Contains("SPDX SBOM", StringComparison.Ordinal) && text.Contains("arm64", StringComparison.Ordinal) &&
-                 text.Contains("origin/main", StringComparison.Ordinal) && text.Contains("RELEASE_NOTES_v1.1.0-rc.1.md", StringComparison.Ordinal);
+                 text.Contains("origin/main", StringComparison.Ordinal) && text.Contains("RELEASE_NOTES_v1.1.0-rc.2.md", StringComparison.Ordinal);
       }),
     "All four README languages explain both native macOS architectures and the same fail-closed release evidence");
-var previewReleaseNotes = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "RELEASE_NOTES_v1.1.0-rc.1.md"));
+var previewReleaseNotes = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "RELEASE_NOTES_v1.1.0-rc.2.md"));
 Check(new[] { "## 繁體中文", "## 简体中文", "## English", "## 日本語" }.All(previewReleaseNotes.Contains) &&
       previewReleaseNotes.Contains("not a formal compatibility claim", StringComparison.Ordinal) &&
       previewReleaseNotes.Contains("作者持有 macOS／Linux 實機", StringComparison.Ordinal) &&
