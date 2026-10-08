@@ -19,7 +19,9 @@ internal sealed class SetupDialog : Form
         StartPosition = FormStartPosition.CenterParent; Font = new(PlatformPresentation.FontName, 10);
         site.Text = settings.SiteUrl; user.Text = settings.WordPressUser; password.Text = settings.WordPressAppPassword;
         clientId.Text = settings.ClientId; secret.Text = settings.ClientSecret;
-        language.DataSource = L.Supported.ToArray();
+        // Fill items directly: a DataSource-bound ComboBox stays empty until it joins a
+        // form, so selecting an index here would throw before the dialog appears.
+        language.Items.AddRange([.. L.Supported]);
         language.SelectedIndex = Math.Max(0, Array.FindIndex(L.Supported, item => item.Code == (string.IsNullOrEmpty(settings.InterfaceLanguage) ? L.Language : settings.InterfaceLanguage)));
         privacy.Items.AddRange([L.T("privacy_private"), L.T("privacy_unlisted"), L.T("privacy_public")]);
         privacy.SelectedIndex = settings.VideoPrivacy switch { "public" => 2, "unlisted" => 1, _ => 0 }; draft.Checked = settings.CreateAsDraft;

@@ -413,6 +413,28 @@ var store = windowsAssembly.GetType("FB2WordPress.SettingsStore", true)!;
 }
 finally { try { Directory.Delete(root, true); } catch { } }
 
+var setupDialogType = windowsAssembly.GetType("FB2WordPress.SetupDialog", true)!;
+foreach (var interfaceLanguage in new[] { "", "zh-TW", "zh-CN", "en", "ja" })
+{
+    Exception? setupError = null;
+    string? selectedCode = null;
+    var setupThread = new Thread(() =>
+    {
+        try
+        {
+            using var dialog = (Form)Activator.CreateInstance(setupDialogType, new AppSettings { InterfaceLanguage = interfaceLanguage })!;
+            var languageBox = dialog.Controls.OfType<FlowLayoutPanel>().SelectMany(panel => panel.Controls.OfType<FlowLayoutPanel>()).SelectMany(row => row.Controls.OfType<ComboBox>()).First(box => box.Items.Count == 4);
+            selectedCode = ((LanguageOption)languageBox.SelectedItem!).Code;
+        }
+        catch (Exception ex) { setupError = ex is TargetInvocationException { InnerException: { } inner } ? inner : ex; }
+    });
+    setupThread.SetApartmentState(ApartmentState.STA);
+    setupThread.Start();
+    setupThread.Join();
+    var expectedCode = string.IsNullOrEmpty(interfaceLanguage) ? L.Language : interfaceLanguage;
+    Check(setupError is null && selectedCode == expectedCode, $"Settings dialog opens and preselects the interface language ({(interfaceLanguage == "" ? "unset" : interfaceLanguage)}){(setupError is null ? "" : ": " + setupError.Message)}");
+}
+
 if (failures.Count > 0) { Console.Error.WriteLine("FAILED: " + string.Join(", ", failures)); return 1; }
 Console.WriteLine("ALL AUDIT TESTS PASSED");
 return 0;
