@@ -44,7 +44,7 @@
 - Same-path settings transactions now use an owned, exclusive cross-process file lock. Timeout, access, symbolic-link, and reparse-path failures refuse the operation; an OS-released crash lease allows the journal to recover safely on the next run.
 - Corrected the shared fallback package version to `1.1.0`; a future three-platform preview may use the `v1.1.0-rc.1` tag, which CI resolves as the package version.
 - Replaced synchronous API settings callbacks with an awaitable persistence flow, so connection completion waits for the save to finish.
-- Added cross-platform CI, CodeQL, NuGet vulnerability auditing, Dependency Review, and commit-pinned Gitleaks secret defense under the [Flameblade Open Source Software Family Quality Standard](CONTRIBUTING.md).
+- Added cross-platform CI, CodeQL, NuGet vulnerability auditing, Dependency Review, and version-pinned, SHA-256-verified Gitleaks secret defense under the [Flameblade Open Source Software Family Quality Standard](CONTRIBUTING.md).
 - macOS and Linux currently have a buildable migration foundation only; complete functionality and real-device compatibility are not yet claimed.
 
 ### 日本語
@@ -59,7 +59,7 @@
 - 同一保存先の設定取引に、所有権を持つ排他的なプロセス間ファイルロックを追加しました。タイムアウト、権限、シンボリックリンク、reparse path の安全確認に失敗した場合は処理を拒否し、プロセス停止時は OS がロックを解放して次回のジャーナル復旧を可能にします。
 - 共有 fallback バージョンを `1.1.0` に修正しました。将来の3プラットフォーム向けプレビューは `v1.1.0-rc.1` タグを使用でき、CI がタグからパッケージ版を上書きします。
 - API の設定保存を待機可能な非同期処理に変更し、接続完了前に保存完了を確実に待つようにしました。
-- クロスプラットフォーム CI、CodeQL、NuGet 脆弱性監査、Dependency Review、commit 固定の Gitleaks 機密情報検査を追加し、[炎剣オープンソースソフトウェアファミリー品質基準](CONTRIBUTING.md)を採用しました。
+- クロスプラットフォーム CI、CodeQL、NuGet 脆弱性監査、Dependency Review、固定版で SHA-256 を照合する Gitleaks 機密情報検査を追加し、[炎剣オープンソースソフトウェアファミリー品質基準](CONTRIBUTING.md)を採用しました。
 - macOS／Linux は現在ビルド可能な移植基盤のみで、完全機能や実機互換性はまだ表明していません。
 
 ## v1.0.0 — 2026-08-05
