@@ -137,7 +137,7 @@ Check(securityWorkflow.Contains("NuGetAuditMode=all", StringComparison.Ordinal) 
 
 var secretDefenseWorkflow = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), ".github", "workflows", "secret-defense.yml"));
 Check(secretDefenseWorkflow.StartsWith("name: Secret Defense / Gitleaks", StringComparison.Ordinal), "Gitleaks workflow uses the shared family display name");
-Check(secretDefenseWorkflow.Contains("gitleaks/gitleaks-action@dcedce43c6f43de0b836d1fe38946645c9c638dc", StringComparison.Ordinal) && secretDefenseWorkflow.Contains("GITLEAKS_ENABLE_COMMENTS: 'false'", StringComparison.Ordinal), "Secret Defense uses a pinned non-commenting Gitleaks action");
+Check(Regex.IsMatch(secretDefenseWorkflow, @"github\.com/gitleaks/gitleaks/releases/download/v\d+\.\d+\.\d+/gitleaks_\d+\.\d+\.\d+_linux_x64\.tar\.gz", RegexOptions.None, TimeSpan.FromSeconds(1)) && Regex.IsMatch(secretDefenseWorkflow, @"echo ""[0-9a-f]{64}  gitleaks\.tar\.gz"" \| sha256sum -c -", RegexOptions.None, TimeSpan.FromSeconds(1)) && !secretDefenseWorkflow.Contains("gitleaks/gitleaks-action", StringComparison.Ordinal), "Secret Defense runs a version-pinned, checksum-verified open-source Gitleaks CLI");
 
 var dependencyWorkflow = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), ".github", "workflows", "dependency-review.yml"));
 Check(dependencyWorkflow.Contains("actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294", StringComparison.Ordinal), "Dependency Review uses the reviewed pinned action revision");
@@ -172,7 +172,7 @@ Check(previewWorkflow.Contains("^v1\\.1\\.0-rc\\.([1-9][0-9]*)$", StringComparis
 Check(previewWorkflow.Contains("Microsoft.Sbom.DotNetTool --version 4.1.5", StringComparison.Ordinal) &&
       previewWorkflow.Contains("SHA256SUMS.txt", StringComparison.Ordinal),
     "Preview artifact sets include a version-pinned SPDX generator and an aggregate SHA256 manifest");
-Check(previewWorkflow.Contains("a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0", StringComparison.Ordinal) &&
+Check(previewWorkflow.Contains("ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0", StringComparison.Ordinal) &&
       previewWorkflow.Contains("sha256sum --check --strict", StringComparison.Ordinal),
     "The official appimagetool download is fail-closed by an exact SHA256");
 

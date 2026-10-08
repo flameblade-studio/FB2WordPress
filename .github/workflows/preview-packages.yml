@@ -244,15 +244,15 @@ jobs:
             -p:DebugSymbols=false \
             -p:DebugType=None \
             -o artifacts/publish
-      - name: Download checksum-pinned official appimagetool
+      - name: Download version- and checksum-pinned official appimagetool 1.9.1
         shell: bash
         run: |
           set -euo pipefail
           tool="$RUNNER_TEMP/appimagetool-x86_64.AppImage"
           curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
             --output "$tool" \
-            https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
-          echo "a6d71e2b6cd66f8e8d16c37ad164658985e0cf5fcaa950c90a482890cb9d13e0  $tool" | sha256sum --check --strict
+            https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage
+          echo "ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0  $tool" | sha256sum --check --strict
           chmod +x "$tool"
       - name: Build genuine x86_64 AppImage
         shell: bash
